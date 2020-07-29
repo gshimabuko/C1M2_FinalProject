@@ -84,7 +84,6 @@ int main() {
 }
 
 int print_statistics(unsigned char test[], int size) {
-    int i;
     unsigned char sorted[size];
     *sorted = *sort_array(test,size);
     print_array(test, SIZE);
@@ -157,7 +156,6 @@ unsigned char * sort_array(unsigned char test[], int size) {
 unsigned char * quicksort(unsigned char test[], int first, int last){
     int i = first;
     int j = last;
-    int k = 0;
     int temp = 0;
     int temp1 = first;
     int temp2 = last;

@@ -21,7 +21,8 @@
  *
  */
 #include "memory.h"
-
+#include <stdint.h>
+#include <stdlib.h>
 /***********************************************************
  Function Definitions
 ***********************************************************/
@@ -69,7 +70,7 @@ uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length){
 
 uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length){
     int i = 0;
-    uint8_t size = (iint) length;
+    uint8_t size = (int) length;
     dst = (uint8_t *)realloc((uint8_t*)dst, length);
     for (i = 0; i < size; i++)
     {
@@ -79,7 +80,7 @@ uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length){
 }
 uint8_t * my_memset(uint8_t * src, size_t length, uint8_t value){
     int i = 0;
-    uint8_t size = (iint) length;
+    uint8_t size = (int) length;
     for (i = 0; i < size; i++)
     {
         *(src + i) = value;
@@ -88,6 +89,7 @@ uint8_t * my_memset(uint8_t * src, size_t length, uint8_t value){
 }
 uint8_t * my_memzero(uint8_t * src, size_t length){
     src = my_memset(src, length, 0);
+    return src;
 }
 
 uint8_t * my_reverse(uint8_t * src, size_t length){
@@ -103,9 +105,9 @@ uint8_t * my_reverse(uint8_t * src, size_t length){
     return src;
 }
 
-int32_t * reserve_words (size_t length){
-    int32_t *ptr;
-    ptr = (int32_t *) malloc(length * sizeof(int32_t));
+uint32_t * reserve_words (size_t length){
+    uint32_t *ptr;
+    ptr = (uint32_t *) malloc(length * sizeof(uint32_t));
     return ptr;
 }
 
