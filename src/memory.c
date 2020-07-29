@@ -47,4 +47,14 @@ void set_all(char * ptr, char value, unsigned int size){
 void clear_all(char * ptr, unsigned int size){
   set_all(ptr, 0, size);
 }
+uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length){
+    int i = 0;
+    int size = (int) length;
+    dst = (uint8_t *)realloc((uint8_t*)dst, length);
+    for (i = 0; i < size; i++)
+    {
+        *(dst + i) = (uint8_t)(src + i)*;
+    }
+    return src;
 
+}

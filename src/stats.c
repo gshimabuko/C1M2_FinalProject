@@ -95,12 +95,14 @@ int print_statistics(unsigned char test[], int size) {
     return 0;
 }
 int print_array(unsigned char test[], int size) {
-    int i;
-    for (i = 0; i < size; i++)
-    {
-        printf("%d ",test[i]);
-    }
-    printf("\n");
+    #ifdef DVERBOSE
+        int i;
+        for (i = 0; i < size; i++)
+        {
+            printf("%d ",test[i]);
+        }
+        printf("\n");
+    #endif
     return 0;
 }
 int find_median(unsigned char test[], int size) {
