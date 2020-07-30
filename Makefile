@@ -56,8 +56,8 @@
 #
 #------------------------------------------------------------------------------
 include sources.mk
-
-TARGET = c1m2
+COURSE = NULL
+TARGET = src/c1m2
 PLATFORM = HOST
 OBJS = $(SOURCES:.c=.o)
 GFLAGS = -Wall -Werror -g -O0 -std=c99
@@ -88,14 +88,22 @@ else
 	OBJDUMP = objdump
 endif
 
+ifeq ($(COURSE), COURSE1)
+	DFLAGS += -DCOURSE1
+endif
+
+ifeq ($(VERBOSE), ENABLE)
+	DFLAGS += -DVERBOSE
+endif
+
 %.o : %.c
-	$(CC) $(INCLUDES) -c $< $(CFLAGS) -o $@
+	$(CC) $(INCLUDES) -c $< $(CFLAGS) $(DFLAGS) -o $@
 %.i: %.c
-	$(CC) $(INCLUDES) $(CPPFLAGS) $< $(CFLAGS) -o $@
+	$(CC) $(INCLUDES) $(CPPFLAGS) $< $(CFLAGS) $(DFLAGS) -o $@
 %.asm: %.c
-	$(CC) $(INCLUDES) -S $< $(CFLAGS) -o $@
+	$(CC) $(INCLUDES) -S $< $(CFLAGS) $(DFLAGS) -o $@
 %.d: %.c
-	$(CC) $(INCLUDES) -M $< $(CFLAGS) -o $@
+	$(CC) $(INCLUDES) -M $< $(CFLAGS) $(DFLAGS) -o $@
 
 .PHONY: all
 build: all
@@ -111,7 +119,7 @@ compile-all: $(OBJS)
 
 .PHONY: build
 build: $(OBJS) $(DEPS)
-	$(CC) $(INCLUDES) $(OBJS) $(CFLAGS) $(LDFLAGS) -o $(TARGET).out
+	$(CC) $(INCLUDES) $(OBJS) $(CFLAGS) $(DFLAGS) $(LDFLAGS) -o $(TARGET).out
 	$(SIZE) -Atd $(TARGET).out
 	$(SIZE) $(TARGET).out
 .PHONY: clean

@@ -68,6 +68,7 @@
 /* Size of the Data Set */
 #define SIZE (40)
 
+/*
 int main() {
 
     unsigned char test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
@@ -78,11 +79,11 @@ int main() {
     print_array(test, SIZE);
     print_statistics(test, SIZE);
     return 0;
-  /* Other Variable Declarations Go Here */
-  /* Statistics and Printing Functions Go Here */
+   Other Variable Declarations Go Here 
+   Statistics and Printing Functions Go Here 
 
 }
-
+*/
 int print_statistics(unsigned char test[], int size) {
     unsigned char sorted[size];
     *sorted = *sort_array(test,size);
@@ -94,7 +95,7 @@ int print_statistics(unsigned char test[], int size) {
     return 0;
 }
 int print_array(unsigned char test[], int size) {
-    #ifdef DVERBOSE
+    #ifdef VERBOSE
         int i;
         for (i = 0; i < size; i++)
         {

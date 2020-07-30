@@ -21,6 +21,7 @@
  *
  */
 #include <stdio.h>
+#include <course1.h>
 #define MAX_LENGTH (10)
 
 /* A pretty boring main file */

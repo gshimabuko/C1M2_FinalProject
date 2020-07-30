@@ -41,8 +41,9 @@ int8_t test_data1() {
   digits = my_itoa( num, ptr, BASE_16);   
   value = my_atoi( ptr, digits, BASE_16);
   #ifdef VERBOSE
-  PRINTF("  Initial number: %d\n", num);
-  PRINTF("  Final Decimal number: %d\n", value);
+  	PRINTF("  Initial number: %d\n", num);
+	PRINTF("  Final Decimal number: %d\n", value);
+    PRINTF("  LENGTH: %d\n", digits);
   #endif
   free_words( (uint32_t*)ptr );
 

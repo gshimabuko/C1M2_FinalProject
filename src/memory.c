@@ -54,7 +54,6 @@ uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length){
     uint8_t size = (int) length;
     uint8_t *tmp;
     tmp = (uint8_t *) malloc(length*sizeof(uint8_t));
-    dst = (uint8_t *) realloc((uint8_t*)dst, length);
     for (i = 0; i < size; i++)
     {
         *(tmp + i) = *(src + i);
@@ -64,14 +63,12 @@ uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length){
         *(dst + i) = *(tmp + i);
     }
     free(tmp);
-    free(src);
     return dst;
 }
 
 uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length){
     int i = 0;
     uint8_t size = (int) length;
-    dst = (uint8_t *)realloc((uint8_t*)dst, length);
     for (i = 0; i < size; i++)
     {
         *(dst + i) = *(src + i);
@@ -101,6 +98,7 @@ uint8_t * my_reverse(uint8_t * src, size_t length){
         temp = *(src + i);
         *(src + i) = *(src + size - i - 1);
         *(src + size - i - 1) = temp;
+        i++;
     }
     return src;
 }
