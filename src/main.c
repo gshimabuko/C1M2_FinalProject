@@ -21,16 +21,14 @@
  *
  */
 #include <stdio.h>
-#include <course1.h>
+#include "course1.h"
 #define MAX_LENGTH (10)
 
 /* A pretty boring main file */
 int main(void) {
     #ifdef COURSE1
         course1();
-        printf("Defined");
     #endif
-    printf("End");
     return 0;
 }
 

@@ -53,6 +53,10 @@
 # Platform Overrides:
 #       PLATFORM=MSP432 - Starts makefile with MSP432 platform
 #       PLATFORM=HOST - Starts makefile with linux platform
+# VERBOSE Override:
+#       VERBOSE=ENABLED - Enables debug printing
+# COURSE Override:
+#       COURSE=COURSE1 - Runs course1.c functions to test programme
 #
 #------------------------------------------------------------------------------
 include sources.mk

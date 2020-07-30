@@ -1,7 +1,63 @@
+/*********************************************************************************
+ * @copyright Copyright (c) 2020 by Guilherme Shimabuko - Shima's Digital Hardware
+ *
+ *     Redistribution and use in source and binary forms, with or without
+ *     modification, are permitted provided that the following conditions
+ *     are met:
+ *     
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *
+ *     * Neither the name of Shima's DIgital Hardware  nor the names of its
+ *       contributors may be used to endorse or promote products
+ *       derived from this software without specific prior written permission.
+ *
+ *     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+ *     IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+ *     TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTI-
+ *     CULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL SHIMA'S DIGITAL HARDWARE
+ *     BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+ *     CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+ *     SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+ *     INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+ *     CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ *     ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
+ *     THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ *********************************************************************************
+ * @file    data.c
+ * @brief   Memory manipulation functions
+ *
+ * @details This file implements functions to manipulate data for the final
+ *          project of Introduction to Embedded Systems Software and Developement
+ *          Environments. Below, information on the function 
+ *          will be detailed including the author of each function.
+ *
+ *          Functions:
+ *              1.  my_itoa - Receives integer in decimal base, converts it to
+ *                  any base upto hexadecimal, and transforms it into an ASCII
+ *                  string.
+ *                  By Guilherme Shimabuko
+ *              2.  my_atoi - Receives pointer to ASCII string and converts it to
+ *                  integer in decimal base.
+ *                  By Guilherme Shimabuko
+ *
+ * @author Alex Fosdick
+ * @author Guilherme Shimabuko
+ * 
+ * date in yy-mm-dd format
+ *
+ * @date 2020-30-07
+ *
+ *********************************************************************************
+ */
 #include <stdint.h>
 #include "data.h"
 #include "memory.h"
-#include <stdio.h>
 uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base){
     int length = 0;
     int digit = 0;
@@ -22,18 +78,14 @@ uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base){
         
     }
     while ( data > 0){
-        printf("Dividing data: %d\n", data);
         digit = data % base;
-        printf("Remainder is: %d\n", digit);
         data = data / base;
-        printf("Division result is %d\n", data);
         if (digit > 9){
             *(ptr + length) = digit + 55;
         }
         else{
             *(ptr + length) = digit + 48;
         }
-        printf("new digit is: %d\n", *(ptr + length));
         length++;
     }
     *(ptr + length) = '\0';
@@ -57,7 +109,6 @@ int32_t my_atoi(uint8_t *ptr, uint8_t digits, uint32_t base){
     }
     else if(*(ptr) == 45)
     {
-        printf("negative");
         stop = 1;
     }
     while(i >= stop){
@@ -65,14 +116,10 @@ int32_t my_atoi(uint8_t *ptr, uint8_t digits, uint32_t base){
         {
             for(j = digits - i - 1; j > 0; j--)
             {
-                printf("j is: %d \n", j);
                 power = power*base;
-                printf("power is: %d \n", power);
             }
-            printf("digit is %d\n", *(ptr + i) - 48);
             data = data + ((*(ptr + i) - 48) * power);
             power = 1;
-            printf("Data is %d\n", data);
         }
         else if ((*(ptr + i) <= 70) && (*(ptr + 1) >= 65))
         {

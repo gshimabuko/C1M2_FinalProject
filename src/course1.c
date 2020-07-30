@@ -43,7 +43,6 @@ int8_t test_data1() {
   #ifdef VERBOSE
   	PRINTF("  Initial number: %d\n", num);
 	PRINTF("  Final Decimal number: %d\n", value);
-    PRINTF("  LENGTH: %d\n", digits);
   #endif
   free_words( (uint32_t*)ptr );
 
